@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -71,17 +72,15 @@ public class StudentController {
     public ResponseEntity<Student> updateStudentDetail(@PathVariable Integer id,@RequestBody Student student) throws serverException {
         Optional<Student> student1 = studentRepo.findById(id);
 
-
-
         if (student1.isPresent()) {
-            if(student.getName() != null){
+            if(!Objects.equals(student.getName(), student1.get().getName())){
                 student1.get().setName(student.getName());
-            } else if (student.getAge() != null) {
+            } else if (!Objects.equals(student.getAge(), student1.get().getAge())) {
                 student1.get().setAge(student.getAge());
-            } else if (student.getAddress() != null) {
-
+            } else if (!Objects.equals(student.getAddress(), student1.get().getAddress())) {
                 student1.get().setAddress(student.getAddress());
             }
+
             return new ResponseEntity<Student>(studentRepo.save(student1.get()), HttpStatus.CREATED);
         }else{
             throw new serverException("No User Found !!! with Id " + id);
@@ -91,6 +90,7 @@ public class StudentController {
     @DeleteMapping ("api/students/{id}")
     public ResponseEntity<Student> deleteAStudent(@PathVariable Integer id) throws serverException {
         Optional<Student> student1 = studentRepo.findById(id);
+        
         if (student1.isPresent()){
             studentRepo.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
