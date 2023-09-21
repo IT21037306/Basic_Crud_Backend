@@ -13,13 +13,8 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int studentId;
-    @NotNull(message = "Name should not be empty")
     private String name;
-    @Min(18)
-    @Max(50)
-    @NotNull(message = "Age should not be empty")
     private Integer age;
-    @NotNull(message = "Address should not be empty")
     private String address;
 
     public int getStudentId() {

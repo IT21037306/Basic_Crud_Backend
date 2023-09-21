@@ -1,5 +1,7 @@
 package com.example.crud.repo;
 
+import com.example.crud.dto.StudentDto;
+
 import com.example.crud.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
