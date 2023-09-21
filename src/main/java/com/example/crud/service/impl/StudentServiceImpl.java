@@ -38,7 +38,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto findById(Integer integer) {
-        return null;
+        return modelMapper.map(studentRepo.findById(integer).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Student not found")),StudentDto.class);
     }
 
     @Override

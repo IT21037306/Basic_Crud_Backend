@@ -41,6 +41,11 @@ public class StudentController {
         return studentService.findAll(PageRequest.of(page, limit));
     }
 
+    @GetMapping("/{id}")
+    public StudentDto getAStudent(@PathVariable Integer id) {
+        return studentService.findById(id);
+    }
+
     @PatchMapping("/{id}")
     public StudentDto updateStudent(@PathVariable Integer id, @RequestBody StudentDto student) {
         return studentService.update(id, student);
