@@ -5,6 +5,8 @@ import com.example.crud.model.Student;
 import com.example.crud.repo.StudentRepo;
 import com.example.crud.service.StudentService;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@EnableCaching
 public class StudentServiceImpl implements StudentService {
 
     private final ModelMapper modelMapper;
